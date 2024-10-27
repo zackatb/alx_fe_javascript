@@ -14,7 +14,7 @@ async function fetchQuotesFromServer() {
     quotes = [...new Set([...serverQuotes, ...quotes])];
     saveQuotes();
     populateCategories();
-    filterQuotes();
+    filterQuote();
   } catch (error) {
     console.error('Error fetching quotes from server:', error);
   }
@@ -53,7 +53,7 @@ function addQuote() {
 
     // Update the UI
     populateCategories();
-    filterQuotes();
+    filterQuote();
   } else {
     alert('Please enter both a quote and a category.');
   }
@@ -89,7 +89,7 @@ window.onload = function() {
   fetchQuotesFromServer(); // Initial fetch
   startDataSync(); // Start periodic syncing
   populateCategories();
-  filterQuotes();
+  filterQuote();
 };
 // Save quotes to local storage
 function saveQuotes() {
@@ -118,7 +118,7 @@ function populateCategories() {
 }
 
 // Filter quotes based on selected category
-function filterQuotes() {
+function filterQuote() {
   const selectedCategory = document.getElementById('categoryFilter').value;
   const quoteDisplay = document.getElementById('quoteDisplay');
   quoteDisplay.innerHTML = ''; // Clear current quotes
@@ -164,7 +164,7 @@ async function syncQuotes() {
     // Update the local quotes array
     quotes = mergedQuotes;
     populateCategories();
-    filterQuotes();
+    filterQuote();
   } catch (error) {
     console.error('Error syncing quotes:', error);
   }
@@ -174,7 +174,7 @@ window.onload = function() {
   syncQuotes(); // Initial sync
   startDataSync(); // Start periodic syncing every 10 minutes
   populateCategories();
-  filterQuotes();
+  filterQuote();
 };
 
 // Periodic sync with server (every 10 minutes)
